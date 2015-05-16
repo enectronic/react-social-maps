@@ -1,3 +1,33 @@
-.AddStatusForm {
-  border: 1px dashed #f00;
+.form {
+	width: 50%;
+	margin: 0 auto;
 }
+
+.form__text {
+	width: 100%;
+	margin-bottom: 16px;
+	outline: none;
+	border: 1px solid whitesmoke;
+	border-radius: 2px;
+}
+
+.form__button {
+	width: 100%;
+	background: #1abc9c;
+	border: none;
+	outline: none;
+	border-bottom: 4px solid #16a085;
+	color: #fff;
+	-webkit-transition: all 50ms ease;transition: all 50ms ease;
+}
+
+.form__button:active {
+	margin-top: 4px;
+	border-bottom: 0px solid #16a085;
+	-webkit-transition: all 50ms ease;transition: all 50ms ease;
+}
+
+.form__text, .form__button {
+	padding: 8px;
+}
+
