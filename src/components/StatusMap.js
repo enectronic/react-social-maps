@@ -28,6 +28,8 @@ var StatusMap = React.createClass({
 			new google.maps.Marker({
 	      position: latLng,
 	      map: map,
+	      animation: google.maps.Animation.DROP,
+	      icon: '../images/beer.png',
 	      title: marker.status
 	  	});
 	  	/* jshint ignore:end */

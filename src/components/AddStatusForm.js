@@ -38,6 +38,10 @@ var AddStatusForm = React.createClass({
 		}
 	},
 
+	componentDidMount: function() {
+		this.refs.status.getDOMNode().focus();
+	},
+
 	onSubmit: function(position) {
 
 		if ( this.refs.status.getDOMNode().value.trim() === '' ) {
