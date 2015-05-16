@@ -9,7 +9,7 @@ require('styles/AddStatusForm.scss');
 var AddStatusForm = React.createClass({
 
 	getLocationBeforeSubmit: function() {
-		if ( FormHelper.hasGeolocation ) {
+		if ( FormHelper.hasGeolocation() ) {
 			var options = {
 				enableHighAccuracy: true,
 				timeout: 5000,
@@ -32,6 +32,13 @@ var AddStatusForm = React.createClass({
 	onSubmit: function(position) {
 		var textNode = this.refs.status.getDOMNode();
 		var text = textNode.value;
+
+		if ( text.trim() === '' ) {
+			// Append an error message before returning
+			// would be better, but this will do for now.
+			return;
+		}
+
 		textNode.value = '';
 		var coords = { lat: position.coords.latitude, lng: position.coords.longitude };
 
