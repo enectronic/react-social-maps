@@ -3,6 +3,7 @@
 var React = require('react/addons');
 var FormHelper = require('../utils/FormHelper');
 var FormActionCreators = require('../actions/FormActionCreators');
+var Loading = require('./Loading');
 
 require('styles/AddStatusForm.scss');
 
@@ -86,7 +87,7 @@ var AddStatusForm = React.createClass({
 
   render: function () {
 
-  	var loading = this.state.loading ? 'Loading..' : 'Tell the world';
+  	var loading = this.state.loading ? <Loading /> : 'Tell the world';
 
     return (
       <div className="form">
