@@ -5,7 +5,6 @@ var AppDispatcher = require('../dispatcher/FluxSocialMapsAppDispatcher');
 var FormActionCreators = {
 
 	addStatus: function(status) {
-		console.log(status);
 		var action = {
 			actionType: 'ADD_STATUS',
 			status: status

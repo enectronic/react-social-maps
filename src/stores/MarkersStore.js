@@ -27,7 +27,7 @@ var MarkersStore = assign({}, EventEmitter.prototype, {
 });
 
 MarkersStore.dispatchToken = FluxSocialMapsAppDispatcher.register(function(action) {
-console.log('yo brorsan');
+
   switch(action.actionType) {
   	case 'ADD_STATUS':
   		markers.push(action.status);
