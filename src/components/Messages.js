@@ -10,7 +10,7 @@ var Messages = React.createClass({
   render: function () {
     return (
         <div>
-          <p>Content for Messages</p>
+          <p>{/* Content for messages */}</p>
         </div>
       );
   }
