@@ -8,7 +8,16 @@ require('styles/AddStatusForm.scss');
 
 var AddStatusForm = React.createClass({
 
+	getInitialState: function() {
+		return {
+			loading: false
+		};
+	},
+
 	getLocationBeforeSubmit: function() {
+
+		this.setState({ loading: true });
+
 		if ( FormHelper.hasGeolocation() ) {
 			var options = {
 				enableHighAccuracy: true,
@@ -30,14 +39,17 @@ var AddStatusForm = React.createClass({
 	},
 
 	onSubmit: function(position) {
-		var textNode = this.refs.status.getDOMNode();
-		var text = textNode.value;
 
-		if ( text.trim() === '' ) {
+		if ( this.refs.status.getDOMNode().value.trim() === '' ) {
 			// Append an error message before returning
 			// would be better, but this will do for now.
+
+			this.setState({ loading: false });
 			return;
 		}
+
+		var textNode = this.refs.status.getDOMNode();
+		var text = textNode.value;
 
 		textNode.value = '';
 		var coords = { lat: position.coords.latitude, lng: position.coords.longitude };
@@ -48,6 +60,7 @@ var AddStatusForm = React.createClass({
 		};
 		
 		FormActionCreators.addStatus(status);
+		this.setState({ loading: false });
 	},
 
 	onSubmitError: function(err) {
@@ -63,9 +76,14 @@ var AddStatusForm = React.createClass({
 			default:
 				break;
 		}
+
+		this.setState({loading: false});
 	},
 
   render: function () {
+
+  	var loading = this.state.loading ? 'Loading..' : 'Tell the world';
+
     return (
       <div className="form">
       	<input 
@@ -78,7 +96,7 @@ var AddStatusForm = React.createClass({
       		className="form__button" 
       		onClick={this.getLocationBeforeSubmit}
       	>
-      		Tell the world
+      		{loading}
       	</button>
       </div>
   	);
