@@ -5,6 +5,8 @@ var React = require('react/addons');
 
 require('styles/Loading.scss');
 
+var interval;
+
 var Loading = React.createClass({
 
 	getInitialState: function() {
@@ -15,7 +17,11 @@ var Loading = React.createClass({
 	},
 
 	componentDidMount: function() {
-		var interval = setInterval(this.updateText, 500);
+		interval = setInterval(this.updateText, 500);
+	},
+
+	componentWillUnmount: function() {
+		clearInterval(interval);
 	},
 
 	updateText: function() {

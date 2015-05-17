@@ -50,7 +50,7 @@ var StatusMap = React.createClass({
 
 		var mapOptions = {
 			center: { lat: 59.5226255, lng: 15.988099499999999 },
-			zoom: 13
+			zoom: 12
 		};
 
 		GoogleMapsLoader.load(function(google) {

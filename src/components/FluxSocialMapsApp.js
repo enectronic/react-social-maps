@@ -7,12 +7,13 @@ var Header = require('./Header');
 
 // CSS
 require('normalize.css');
+require('../styles/variables.scss');
 require('../styles/main.css');
 
 var FluxSocialMapsApp = React.createClass({
   render: function() {
     return (
-    	<div>
+    	<div className="inner-content">
     		<Header />
       		<RouteHandler />
       	</div>

@@ -2,7 +2,6 @@
 
 var React = require('react/addons');
 
-
 require('styles/Header.scss');
 
 var Header = React.createClass({
