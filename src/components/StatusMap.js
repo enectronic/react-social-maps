@@ -25,13 +25,20 @@ var StatusMap = React.createClass({
 		this.state.markers.map(function(marker) {
 			/* jshint ignore:start */
 			var latLng = new google.maps.LatLng(marker.coords.lat, marker.coords.lng);
-			new google.maps.Marker({
+			var mapMarker = new google.maps.Marker({
 	      position: latLng,
 	      map: map,
-	      animation: google.maps.Animation.DROP,
-	      icon: '../images/beer.png',
-	      title: marker.status
+	      animation: google.maps.Animation.DROP
 	  	});
+
+      var content = '<p>' + marker.status + '</p>';
+      var panel = new google.maps.InfoWindow({
+        content: content
+      });
+
+      google.maps.event.addListener(mapMarker, 'click', function() {
+        panel.open(map, mapMarker);
+      });
 	  	/* jshint ignore:end */
 		});
 	},
@@ -45,7 +52,7 @@ var StatusMap = React.createClass({
 	},
 
 	componentWillMount: function() {
-		
+
 		MarkerStore.addChangeListener(this.onChange);
 
 		var mapOptions = {
@@ -69,5 +76,5 @@ var StatusMap = React.createClass({
   }
 });
 
-module.exports = StatusMap; 
+module.exports = StatusMap;
 
