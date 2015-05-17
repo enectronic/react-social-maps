@@ -23,11 +23,13 @@ var StatusMap = React.createClass({
 
 	distributeMarkers: function() {
 		this.state.markers.map(function(marker) {
+
 			/* jshint ignore:start */
 			var latLng = new google.maps.LatLng(marker.coords.lat, marker.coords.lng);
 			var mapMarker = new google.maps.Marker({
 	      position: latLng,
 	      map: map,
+        icon: marker.party ? '../images/beer.png' : '',
 	      animation: google.maps.Animation.DROP
 	  	});
 

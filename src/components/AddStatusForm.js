@@ -12,7 +12,8 @@ var AddStatusForm = React.createClass({
 
 	getInitialState: function() {
 		return {
-			loading: false
+			loading: false,
+      party: false
 		};
 	},
 
@@ -64,6 +65,7 @@ var AddStatusForm = React.createClass({
     }
 
     var name = this.refs.name.getDOMNode().value;
+    var party = this.refs.party.getDOMNode().checked;
 		var textNode = this.refs.status.getDOMNode();
 		var text = textNode.value;
 
@@ -73,6 +75,7 @@ var AddStatusForm = React.createClass({
 		var status = {
       name: name,
 			status: text,
+      party: party,
 			coords: coords
 		};
 
@@ -99,6 +102,21 @@ var AddStatusForm = React.createClass({
 		this.setState({loading: false});
 	},
 
+  toggleParty: function() {
+    this.setState({
+      party: !this.state.party
+    });
+  },
+
+  getLabelClass: function() {
+    var className = 'form__checkbox';
+    if ( this.state.party ) {
+      return className += ' form__checkbox--party';
+    }
+
+    return className;
+  },
+
   render: function () {
 
   	var loading = this.state.loading ? <Loading /> : 'Tell the world';
@@ -111,8 +129,17 @@ var AddStatusForm = React.createClass({
               type="text"
               ref="name"
               placeholder="Hey! Your name please."
-              className="form__text"
+              className="form__text--name"
             />
+            <label ref="checkboxLabel" className={this.getLabelClass()}>
+              Party&nbsp;
+              <input
+                type="checkbox"
+                ref="party"
+                checked={this.state.party}
+                onChange={this.toggleParty}
+              />
+            </label>
             <input
 		      		type="text"
 		      		ref="status"

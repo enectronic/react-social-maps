@@ -19,12 +19,28 @@ $gray: #85838a;
 	}
 }
 
-.form__text {
+.form__text, .form__text--name {
+  float: left;
 	width: 100%;
 	margin-bottom: 16px;
 	outline: none;
 	border: 1px solid #f5f5f5;
 	border-radius: 2px;
+}
+
+.form__checkbox {
+  float: left;
+  width: 35%;
+  text-align: right;
+  color: #999;
+}
+
+.form__checkbox--party {
+  color: #000;
+}
+
+.form__text--name {
+  width: 65%;
 }
 
 .form__button {
@@ -37,7 +53,10 @@ $gray: #85838a;
 	color: $blue;
 }
 
-.form__text, .form__button {
+.form__text,
+.form__button,
+.form__text--name,
+.form__checkbox {
 	padding: 8px;
 }
 
