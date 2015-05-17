@@ -91,20 +91,22 @@ var AddStatusForm = React.createClass({
 
     return (
     	<div className="form-container">
-	      <div className="form">
-	      	<input 
-	      		type="text" 
-	      		ref="status" 
-	      		placeholder="Tell me what's up!" 
-	      		className="form__text"
-	      	/>
-	      	<button 
-	      		className="form__button" 
-	      		onClick={this.getLocationBeforeSubmit}
-	      	>
-	      		{loading}
-	      	</button>
-	      	<Messages />
+    		<div className="container-960">
+		      <div className="form">
+		      	<input 
+		      		type="text" 
+		      		ref="status" 
+		      		placeholder="Tell me what's up!" 
+		      		className="form__text"
+		      	/>
+		      	<button 
+		      		className="form__button" 
+		      		onClick={this.getLocationBeforeSubmit}
+		      	>
+		      		{loading}
+		      	</button>
+		      	<Messages />
+		      </div>
 	      </div>
       </div>
   	);

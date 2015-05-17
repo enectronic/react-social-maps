@@ -10,11 +10,13 @@ var Header = React.createClass({
   render: function () {
     return (
         <header>
-        	<div className="logo">
-        		<h1>Spot Mark</h1>
-        	</div>
+        	<div className="container-960 table">
+	        	<div className="logo">
+	        		<h1>Spot Mark</h1>
+	        	</div>
 
-        	<InfoBox />
+	        	<InfoBox />
+        	</div>
         </header>
       );
   }

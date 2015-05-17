@@ -23,3 +23,13 @@ body {
 	float: left;
 	width: 100%;
 }
+
+.table {
+  display: table;
+}
+
+.container-960 {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
