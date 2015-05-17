@@ -18,7 +18,7 @@ function getLocationFromStore() {
 }
 
 var map;
-function loadGoogleMap(coords, cb) {
+function loadGoogleMap(coords, callback) {
 
   var mapOptions = {
     center: { lat: coords.lat, lng: coords.lng },
@@ -29,7 +29,7 @@ function loadGoogleMap(coords, cb) {
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
   });
 
-  cb();
+  callback();
 }
 
 var StatusMap = React.createClass({
@@ -41,6 +41,7 @@ var StatusMap = React.createClass({
 
   onLocationChange: function() {
     this.setState(getLocationFromStore());
+    loadGoogleMap(this.state.location, this.distributeMarkers);
   },
 
 	distributeMarkers: function() {
@@ -89,11 +90,11 @@ var StatusMap = React.createClass({
 	componentWillMount: function() {
 		MarkerStore.addChangeListener(this.onChange);
     LocatorStore.addChangeListener(this.onLocationChange);
+    loadGoogleMap(this.state.location, this.distributeMarkers);
 	},
 
   render: function () {
-    var coords = this.state.location;
-    loadGoogleMap(coords, this.distributeMarkers);
+
     return (
     		<div>
 	        <div id="map" className="map">
