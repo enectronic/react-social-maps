@@ -1,13 +1,16 @@
 .info-box {
   display: table-cell;
   vertical-align: middle;
-  text-align: center;
+  text-align: right;
 	width: 50%;
+	padding-right: 2rem;
 	color: #fff;
 	@media screen and (max-width: 768px) { 
 		display: block;
 		float: left;
 		width: 100%; 
+		text-align: center;
+		padding-right: 0;
 	}
 
 	p {
