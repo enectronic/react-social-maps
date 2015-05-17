@@ -35,9 +35,8 @@ MarkersStore.dispatchToken = FluxSocialMapsAppDispatcher.register(function(actio
   		break;
 
     default:
-		break;
   }
 
 });
 
-module.exports = MarkersStore; 
+module.exports = MarkersStore;
