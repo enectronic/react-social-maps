@@ -39,19 +39,31 @@ var AddStatusForm = React.createClass({
 	},
 
 	componentDidMount: function() {
-		this.refs.status.getDOMNode().focus();
+		this.refs.name.getDOMNode().focus();
 	},
 
 	onSubmit: function(position) {
-
+    var errors = [];
 		if ( this.refs.status.getDOMNode().value.trim() === '' ) {
-			// Append an error message before returning
-			// would be better, but this will do for now.
-			FormActionCreators.feedbackMessage('You need to write something.');
+			// Append an error message before returning.
+			errors.push('You need to write something');
 			this.setState({ loading: false });
-			return;
 		}
 
+    if ( this.refs.name.getDOMNode().value.trim() === '' ) {
+      errors.push('I wanna know your name');
+      this.setState({ loading: false });
+    }
+
+    // If any errors were catched, send an action and return
+    if ( errors.length ) {
+      errors.map(function(error) {
+        FormActionCreators.feedbackMessage(error);
+      });
+      return;
+    }
+
+    var name = this.refs.name.getDOMNode().value;
 		var textNode = this.refs.status.getDOMNode();
 		var text = textNode.value;
 
@@ -59,12 +71,14 @@ var AddStatusForm = React.createClass({
 		var coords = { lat: position.coords.latitude, lng: position.coords.longitude };
 
 		var status = {
+      name: name,
 			status: text,
 			coords: coords
 		};
 
 		FormActionCreators.addStatus(status);
 		this.setState({ loading: false });
+    this.refs.status.getDOMNode().focus();
 	},
 
 	onSubmitError: function(err) {
@@ -94,6 +108,12 @@ var AddStatusForm = React.createClass({
     		<div className="container-960">
 		      <div className="form">
 		      	<input
+              type="text"
+              ref="name"
+              placeholder="Hey! Your name please."
+              className="form__text"
+            />
+            <input
 		      		type="text"
 		      		ref="status"
 		      		placeholder="Tell me what's up!"

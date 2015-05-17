@@ -31,7 +31,11 @@ var StatusMap = React.createClass({
 	      animation: google.maps.Animation.DROP
 	  	});
 
-      var content = '<p>' + marker.status + '</p>';
+      var content = '<div class="panel">' +
+        '<p class="panel__name">' + marker.name + ':</p>' +
+        '<p class="panel__status">' + marker.status + '</p>' +
+        '</div>';
+
       var panel = new google.maps.InfoWindow({
         content: content
       });
