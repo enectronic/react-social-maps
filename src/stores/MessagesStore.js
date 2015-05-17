@@ -27,7 +27,7 @@ var MessagesStore = assign({}, EventEmitter.prototype, {
 });
 
 MessagesStore.dispatchToken = FluxSocialMapsAppDispatcher.register(function(action) {
-	console.log(action);
+
   switch(action.actionType) {
   	case 'FEEDBACK_MESSAGE':
   		messages.push(action.message);

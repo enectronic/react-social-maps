@@ -15,8 +15,8 @@ var FluxSocialMapsApp = React.createClass({
     return (
     	<div className="inner-content">
     		<Header />
-      		<RouteHandler />
-      	</div>
+    		<RouteHandler />
+    	</div>
     );
   }
 });

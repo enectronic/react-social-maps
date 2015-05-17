@@ -3,16 +3,34 @@
 var React = require('react/addons');
 var GoogleMapsLoader = require('google-maps');
 var MarkerStore = require('../stores/MarkersStore');
+var LocatorStore = require('../stores/LocatorStore');
 
 require('styles/StatusMap.scss');
 
 function getMarkersFromStore() {
-	return {
-		markers: MarkerStore.getAll()
-	};
+		return MarkerStore.getAll();
+}
+
+function getLocationFromStore() {
+  return {
+    location: LocatorStore.getLocation()
+  };
 }
 
 var map;
+function loadGoogleMap(coords, cb) {
+
+  var mapOptions = {
+    center: { lat: coords.lat, lng: coords.lng },
+    zoom: 12
+  };
+
+  GoogleMapsLoader.load(function(google) {
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  });
+
+  cb();
+}
 
 var StatusMap = React.createClass({
 
@@ -20,6 +38,10 @@ var StatusMap = React.createClass({
 		this.setState(getMarkersFromStore());
 		this.distributeMarkers();
 	},
+
+  onLocationChange: function() {
+    this.setState(getLocationFromStore());
+  },
 
 	distributeMarkers: function() {
 		this.state.markers.map(function(marker) {
@@ -50,28 +72,28 @@ var StatusMap = React.createClass({
 	},
 
 	getInitialState: function() {
-		return getMarkersFromStore();
+		return {
+      markers: getMarkersFromStore(),
+      location: {
+        lat: 33.57,
+        lng: 86.75
+      }
+    };
 	},
 
 	componentWillUnmount: function() {
 		MarkerStore.removeChangeListener(this.onChange);
+    LocatorStore.removechangeListener(this.onLocationChange);
 	},
 
 	componentWillMount: function() {
-
 		MarkerStore.addChangeListener(this.onChange);
-
-		var mapOptions = {
-			center: { lat: 59.5226255, lng: 15.988099499999999 },
-			zoom: 12
-		};
-
-		GoogleMapsLoader.load(function(google) {
-			map = new google.maps.Map(document.getElementById('map'), mapOptions);
-		});
+    LocatorStore.addChangeListener(this.onLocationChange);
 	},
 
   render: function () {
+    var coords = this.state.location;
+    loadGoogleMap(coords, this.distributeMarkers);
     return (
     		<div>
 	        <div id="map" className="map">
