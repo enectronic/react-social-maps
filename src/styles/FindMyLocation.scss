@@ -1,0 +1,27 @@
+.find-me {
+  width: 50%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 3rem 2rem;
+  @media screen and (max-width: 768px) {
+    width: calc(100% - 64px);
+    margin: 0 32px;
+  }
+}
+
+.find-me-container {
+  float: left;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.find-me__button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 1px solid #59a6da;
+  border-radius: 30px;
+  color: #59a6da;
+  padding: 8px;
+}
