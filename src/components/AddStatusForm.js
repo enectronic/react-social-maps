@@ -28,7 +28,7 @@ var AddStatusForm = React.createClass({
 			};
 
 			navigator.geolocation.getCurrentPosition(
-				this.onSubmit, 
+				this.onSubmit,
 				this.onSubmitError,
 				options
 			);
@@ -62,7 +62,7 @@ var AddStatusForm = React.createClass({
 			status: text,
 			coords: coords
 		};
-		
+
 		FormActionCreators.addStatus(status);
 		this.setState({ loading: false });
 	},
@@ -93,14 +93,14 @@ var AddStatusForm = React.createClass({
     	<div className="form-container">
     		<div className="container-960">
 		      <div className="form">
-		      	<input 
-		      		type="text" 
-		      		ref="status" 
-		      		placeholder="Tell me what's up!" 
+		      	<input
+		      		type="text"
+		      		ref="status"
+		      		placeholder="Tell me what's up!"
 		      		className="form__text"
 		      	/>
-		      	<button 
-		      		className="form__button" 
+		      	<button
+		      		className="form__button"
 		      		onClick={this.getLocationBeforeSubmit}
 		      	>
 		      		{loading}
@@ -113,5 +113,5 @@ var AddStatusForm = React.createClass({
   }
 });
 
-module.exports = AddStatusForm; 
+module.exports = AddStatusForm;
 

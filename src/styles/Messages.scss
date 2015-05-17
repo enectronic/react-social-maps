@@ -3,3 +3,21 @@
   margin-bottom: 0;
   margin-top: 24px;
 }
+
+.fade-in-enter {
+  opacity: 0.01;
+  transition: opacity .25s ease-in;
+}
+
+.fade-in-enter.fade-in-enter-active {
+  opacity: 1;
+}
+
+.fade-in-leave {
+  opacity: 1;
+  transition: opacity .25s ease-in;
+}
+
+.fade-in-leave.fade-in-leave-active {
+  opacity: 0.01;
+}

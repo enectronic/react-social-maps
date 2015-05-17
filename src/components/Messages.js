@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react/addons');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var MessagesStore = require('../stores/MessagesStore');
 
 require('styles/Messages.scss');
@@ -39,11 +40,13 @@ var Messages = React.createClass({
 
     return (
         <div>
-          {messages}
+          <ReactCSSTransitionGroup transitionName="fade-in">
+            {messages}
+          </ReactCSSTransitionGroup>
         </div>
       );
   }
 });
 
-module.exports = Messages; 
+module.exports = Messages;
 
