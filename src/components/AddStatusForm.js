@@ -4,6 +4,7 @@ var React = require('react/addons');
 var FormHelper = require('../utils/FormHelper');
 var FormActionCreators = require('../actions/FormActionCreators');
 var Loading = require('./Loading');
+var Messages = require('./Messages');
 
 require('styles/AddStatusForm.scss');
 
@@ -16,7 +17,7 @@ var AddStatusForm = React.createClass({
 	},
 
 	getLocationBeforeSubmit: function() {
-
+		FormActionCreators.clearFeedbackMessages();
 		this.setState({ loading: true });
 
 		if ( FormHelper.hasGeolocation() ) {
@@ -32,10 +33,8 @@ var AddStatusForm = React.createClass({
 				options
 			);
 		} else {
-			// Send an action to add a message
-			// saying that you need geolocation
-			// in order to submit this form
-			console.log('said no..');
+			// Send an action to add a message for the client
+			FormActionCreators.feedbackMessage('You need a browser that supports geolocation in order to use this web app.');
 		}
 	},
 
@@ -48,7 +47,7 @@ var AddStatusForm = React.createClass({
 		if ( this.refs.status.getDOMNode().value.trim() === '' ) {
 			// Append an error message before returning
 			// would be better, but this will do for now.
-
+			FormActionCreators.feedbackMessage('You need to write something.');
 			this.setState({ loading: false });
 			return;
 		}
@@ -70,15 +69,16 @@ var AddStatusForm = React.createClass({
 
 	onSubmitError: function(err) {
 		// Something went wrong while getting the geolocation.
-		console.warn('ERROR(' + err.code + '): ' + err.message);
 		switch ( err.code ) {
 			case 1: // User denied geolocation
 				// Create a new message for the user to inform
 				// that she needs to accept geolocation in order
 				// to use SocialMaps.
+				FormActionCreators.feedbackMessage('You need to allow us to fetch your position.');
 				break;
 
 			default:
+				FormActionCreators.feedbackMessage('Something went wrong');
 				break;
 		}
 
@@ -103,6 +103,7 @@ var AddStatusForm = React.createClass({
       	>
       		{loading}
       	</button>
+      	<Messages />
       </div>
   	);
   }

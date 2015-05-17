@@ -7,6 +7,10 @@ $gray: #85838a;
 	margin: 0 auto;
 	background: #fff;
 	padding: 3rem 2rem;
+	@media screen and (max-width: 768px) {
+		width: calc(100% - 64px);
+		margin: 0 32px;
+	}
 }
 
 .form__text {

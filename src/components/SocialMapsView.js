@@ -12,7 +12,6 @@ var SocialMapsView = React.createClass({
   render: function () {
     return (
         <div>
-        	<Messages />
         	<StatusMap />
           	<AddStatusForm />
         </div>
