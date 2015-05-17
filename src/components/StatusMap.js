@@ -64,9 +64,6 @@ var StatusMap = React.createClass({
 	        <div id="map" className="map">
 	          {/* Google Map is rendered here */}
 	        </div>
-	        <p>
-	        	Currently {this.state.markers.length} markers on the map!
-	        </p>
         </div>
       );
   }

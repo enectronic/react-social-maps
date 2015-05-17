@@ -90,20 +90,22 @@ var AddStatusForm = React.createClass({
   	var loading = this.state.loading ? <Loading /> : 'Tell the world';
 
     return (
-      <div className="form">
-      	<input 
-      		type="text" 
-      		ref="status" 
-      		placeholder="Tell me what's up!" 
-      		className="form__text"
-      	/>
-      	<button 
-      		className="form__button" 
-      		onClick={this.getLocationBeforeSubmit}
-      	>
-      		{loading}
-      	</button>
-      	<Messages />
+    	<div className="form-container">
+	      <div className="form">
+	      	<input 
+	      		type="text" 
+	      		ref="status" 
+	      		placeholder="Tell me what's up!" 
+	      		className="form__text"
+	      	/>
+	      	<button 
+	      		className="form__button" 
+	      		onClick={this.getLocationBeforeSubmit}
+	      	>
+	      		{loading}
+	      	</button>
+	      	<Messages />
+	      </div>
       </div>
   	);
   }

@@ -1,0 +1,18 @@
+.info-box {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+	width: 50%;
+	color: #fff;
+	@media screen and (max-width: 768px) { 
+		display: block;
+		float: left;
+		width: 100%; 
+	}
+
+	p {
+		@media screen and (max-width: 768px) { 
+			margin-bottom: 3rem;
+		}
+	}
+}

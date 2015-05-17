@@ -4,19 +4,31 @@ $gray: #85838a;
 
 header {
 	float: left;
+	display: table !important;
 	width: 100%;
 	padding: 1rem 0;
-	@media screen and (max-width: 768px) { padding: 0; }
+	@media screen and (max-width: 768px) { 
+		padding: 0; 
+		display: block;
+	}
 	background: -webkit-linear-gradient(left, $green, $blue); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(left, $green, $blue); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(left, $green, $blue); /* For Firefox 3.6 to 15 */
   background: linear-gradient(left, $green, $blue); /* Standard syntax */
+	div.logo {
+		float: left;
+		width: 50%;
+		@media screen and (max-width: 768px) { width: 100% }
+	}
 	h1 {
+		width: 100%;
 		color: #fff;
-		font-size: 3rem;
+		font-size: 2.5rem;
 		margin-left: 2rem;
 		@media screen and (max-width: 768px) {
 			text-align: center;
+			margin-left: 0;
+			margin-bottom: 0;
 		}
 	}
 }
