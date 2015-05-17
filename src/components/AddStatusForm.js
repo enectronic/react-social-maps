@@ -17,8 +17,33 @@ var AddStatusForm = React.createClass({
 		};
 	},
 
+  validate: function() {
+    var errors = [];
+    if ( this.refs.status.getDOMNode().value.trim() === '' ) {
+      // Append an error message before returning.
+      errors.push('You need to write something');
+      this.setState({ loading: false });
+    }
+
+    if ( this.refs.name.getDOMNode().value.trim() === '' ) {
+      errors.push('I wanna know your name');
+      this.setState({ loading: false });
+    }
+
+    // If any errors were catched, send an action and return
+    if ( errors.length ) {
+      errors.map(function(error) {
+        FormActionCreators.feedbackMessage(error);
+      });
+      return;
+    }
+
+    this.getLocationBeforeSubmit();
+  },
+
 	getLocationBeforeSubmit: function() {
 		FormActionCreators.clearFeedbackMessages();
+
 		this.setState({ loading: true });
 
 		if ( FormHelper.hasGeolocation() ) {
@@ -44,25 +69,6 @@ var AddStatusForm = React.createClass({
 	},
 
 	onSubmit: function(position) {
-    var errors = [];
-		if ( this.refs.status.getDOMNode().value.trim() === '' ) {
-			// Append an error message before returning.
-			errors.push('You need to write something');
-			this.setState({ loading: false });
-		}
-
-    if ( this.refs.name.getDOMNode().value.trim() === '' ) {
-      errors.push('I wanna know your name');
-      this.setState({ loading: false });
-    }
-
-    // If any errors were catched, send an action and return
-    if ( errors.length ) {
-      errors.map(function(error) {
-        FormActionCreators.feedbackMessage(error);
-      });
-      return;
-    }
 
     var name = this.refs.name.getDOMNode().value;
     var party = this.refs.party.getDOMNode().checked;
@@ -148,7 +154,7 @@ var AddStatusForm = React.createClass({
 		      	/>
 		      	<button
 		      		className="form__button"
-		      		onClick={this.getLocationBeforeSubmit}
+		      		onClick={this.validate}
 		      	>
 		      		{loading}
 		      	</button>
