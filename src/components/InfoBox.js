@@ -29,14 +29,22 @@ var InfoBox = React.createClass({
 		MarkersStore.removeChangeListener(this.onChange);
 	},
 
+  renderMarkersText: function() {
+    var text = this.state.markers.length === 1 ? ' marker ' : ' markers ';
+
+    return (
+      'There are currently ' + this.state.markers.length + text + 'on the map!'
+    );
+  },
+
   render: function () {
     return (
         <div className="info-box">
-          <p>There are currently {this.state.markers.length} markers on the map!</p>
+          <p>{this.renderMarkersText()}</p>
         </div>
       );
   }
 });
 
-module.exports = InfoBox; 
+module.exports = InfoBox;
 
