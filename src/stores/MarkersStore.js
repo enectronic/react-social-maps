@@ -31,12 +31,14 @@ MarkersStore.dispatchToken = FluxSocialMapsAppDispatcher.register(function(actio
   switch(action.actionType) {
   	case 'ADD_STATUS':
   		markers.push(action.status);
-  		MarkersStore.emitChange();
   		break;
 
     default:
+      return true;
   }
 
+  MarkersStore.emitChange();
+  return true;
 });
 
 module.exports = MarkersStore;

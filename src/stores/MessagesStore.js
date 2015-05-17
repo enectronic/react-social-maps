@@ -31,17 +31,18 @@ MessagesStore.dispatchToken = FluxSocialMapsAppDispatcher.register(function(acti
   switch(action.actionType) {
   	case 'FEEDBACK_MESSAGE':
   		messages.push(action.message);
-  		MessagesStore.emitChange();
   		break;
 
   	case 'FEEDBACK_CLEAR':
   		messages = [];
-  		MessagesStore.emitChange();
   		break;
-  		
+
     default:
+      return true;
   }
 
+  MessagesStore.emitChange();
+  return true;
 });
 
-module.exports = MessagesStore; 
+module.exports = MessagesStore;
