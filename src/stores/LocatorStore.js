@@ -27,7 +27,7 @@ var LocatorStore = assign({}, EventEmitter.prototype, {
 });
 
 LocatorStore.dispatchToken = FluxSocialMapsAppDispatcher.register(function(action) {
-  console.log(action);
+
   switch(action.actionType) {
 
     case 'LOCATE_USER':
