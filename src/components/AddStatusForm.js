@@ -10,6 +10,8 @@ require('styles/AddStatusForm.scss');
 
 var AddStatusForm = React.createClass({
 
+  mixins: [FormHelper],
+
 	getInitialState: function() {
 		return {
 			loading: false,
@@ -46,7 +48,7 @@ var AddStatusForm = React.createClass({
 
 		this.setState({ loading: true });
 
-		if ( FormHelper.hasGeolocation() ) {
+		if ( this.hasGeolocation() ) {
 			var options = {
 				enableHighAccuracy: true,
 				timeout: 5000,
