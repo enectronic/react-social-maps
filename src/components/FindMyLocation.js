@@ -9,6 +9,8 @@ require('styles/FindMyLocation.scss');
 
 var FindMyLocation = React.createClass({
 
+  mixins: [FormHelper],
+
   getInitialState: function () {
       return {
           loading: false
@@ -18,7 +20,7 @@ var FindMyLocation = React.createClass({
   getLocationBeforeSubmit: function() {
     this.setState({ loading: true });
 
-    if ( FormHelper.hasGeolocation() ) {
+    if ( this.hasGeolocation() ) {
       var options = {
         enableHighAccuracy: true,
         timeout: 5000,
@@ -37,6 +39,11 @@ var FindMyLocation = React.createClass({
   },
 
   onSubmit: function(location) {
+    var coords = {
+      lat: location.coords.latitude,
+      lng: location.coords.longitude
+    };
+
     FindMeActionCreators.locate(location.coords);
     this.setState({ loading: false });
   },

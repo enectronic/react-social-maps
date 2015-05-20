@@ -32,7 +32,7 @@ LocatorStore.dispatchToken = FluxSocialMapsAppDispatcher.register(function(actio
 
     case 'LOCATE_USER':
       // Locate
-      pos = { lat: action.coords.latitude, lng: action.coords.longitude };
+      pos = { lat: action.coords.lat, lng: action.coords.lng };
       break;
 
     default:

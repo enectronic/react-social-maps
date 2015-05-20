@@ -3,6 +3,7 @@
 var React = require('react/addons');
 var FormHelper = require('../utils/FormHelper');
 var FormActionCreators = require('../actions/FormActionCreators');
+var FindMeActionCreators = require('../actions/FindMeActionCreators');
 var Loading = require('./Loading');
 var Messages = require('./Messages');
 
@@ -88,6 +89,7 @@ var AddStatusForm = React.createClass({
 		};
 
 		FormActionCreators.addStatus(status);
+    FindMeActionCreators.locate(coords);
 		this.setState({ loading: false });
     this.refs.status.getDOMNode().focus();
 	},

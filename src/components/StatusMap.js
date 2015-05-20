@@ -29,13 +29,16 @@ function loadGoogleMap(coords, callback) {
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
   });
 
-  callback();
+  if (callback) {
+    callback();
+  }
 }
 
 var StatusMap = React.createClass({
 
 	onChange: function() {
 		this.setState(getMarkersFromStore());
+    console.log(this.state);
 		this.distributeMarkers();
 	},
 
