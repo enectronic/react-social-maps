@@ -14,10 +14,12 @@ function getMessagesFromStore() {
 
 var Messages = React.createClass({
 
+  // Self written methods
 	onChange: function() {
 		this.setState(getMessagesFromStore());
 	},
 
+  // React's methods
 	getInitialState: function() {
 		return getMessagesFromStore();
 	},
@@ -31,7 +33,7 @@ var Messages = React.createClass({
 	},
 
   render: function () {
-
+    // Map each message to a <p> tag
   	var messages = this.state.messages.map(function(message, idx) {
   		return (
   			<p key={'message-'+idx} className="message">{message}</p>

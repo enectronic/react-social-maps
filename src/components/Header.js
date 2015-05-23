@@ -1,3 +1,6 @@
+// Simple header that includes a heading and
+// our InfoBox component.
+
 'use strict';
 
 var React = require('react/addons');
@@ -22,5 +25,5 @@ var Header = React.createClass({
   }
 });
 
-module.exports = Header; 
+module.exports = Header;
 
