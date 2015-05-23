@@ -1,3 +1,7 @@
+// This is the start of our react app.
+// Loads the route handler onto our
+// "content" element.
+
 'use strict';
 
 var FluxSocialMapsApp = require('./FluxSocialMapsApp');

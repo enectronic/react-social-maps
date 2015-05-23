@@ -1,3 +1,6 @@
+// The map component. Renders a map and also the
+// markers currently shown on that map.
+
 'use strict';
 
 var React = require('react/addons');
@@ -7,6 +10,7 @@ var LocatorStore = require('../stores/LocatorStore');
 
 require('styles/StatusMap.scss');
 
+// Utility methods. Should probably move onto a util file.
 function getMarkersFromStore() {
 		return MarkerStore.getAll();
 }
@@ -36,6 +40,7 @@ function loadGoogleMap(coords, callback) {
 
 var StatusMap = React.createClass({
 
+  // Self defined methods:
 	onChange: function() {
 		this.setState(getMarkersFromStore());
     console.log(this.state);
@@ -75,6 +80,7 @@ var StatusMap = React.createClass({
 		});
 	},
 
+  // React's own methods
 	getInitialState: function() {
 		return {
       markers: getMarkersFromStore(),

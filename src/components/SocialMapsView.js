@@ -1,3 +1,7 @@
+// This component is essentially a layout component
+// composed by other, more dynamically functioning
+// child components.
+
 'use strict';
 
 var React = require('react');

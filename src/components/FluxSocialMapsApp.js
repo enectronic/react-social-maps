@@ -1,3 +1,6 @@
+// This is the app container component. Renders the route
+// handler.
+
 'use strict';
 
 var React = require('react');
