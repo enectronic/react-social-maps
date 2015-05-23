@@ -1,3 +1,6 @@
+// This components takes care of finding the user's location
+// once the user clicks the "find my location" button.
+
 'use strict';
 
 var React = require('react/addons');
@@ -9,14 +12,7 @@ require('styles/FindMyLocation.scss');
 
 var FindMyLocation = React.createClass({
 
-  mixins: [FormHelper],
-
-  getInitialState: function () {
-      return {
-          loading: false
-      };
-  },
-
+  // Self written methods
   getLocationBeforeSubmit: function() {
     this.setState({ loading: true });
 
@@ -52,6 +48,15 @@ var FindMyLocation = React.createClass({
     // Handle errors
     console.warn(err);
     this.setState({ loading: false });
+  },
+
+  // React's own methods.
+  mixins: [FormHelper],
+
+  getInitialState: function () {
+      return {
+          loading: false
+      };
   },
 
   render: function () {

@@ -1,3 +1,6 @@
+// the "form" component that the user fills in
+// for a marker to display.
+
 'use strict';
 
 var React = require('react/addons');
@@ -11,15 +14,7 @@ require('styles/AddStatusForm.scss');
 
 var AddStatusForm = React.createClass({
 
-  mixins: [FormHelper],
-
-	getInitialState: function() {
-		return {
-			loading: false,
-      party: false
-		};
-	},
-
+  // Self written methods
   validate: function() {
     var errors = [];
     if ( this.refs.status.getDOMNode().value.trim() === '' ) {
@@ -44,73 +39,69 @@ var AddStatusForm = React.createClass({
     this.getLocationBeforeSubmit();
   },
 
-	getLocationBeforeSubmit: function() {
-		FormActionCreators.clearFeedbackMessages();
+  getLocationBeforeSubmit: function() {
+    FormActionCreators.clearFeedbackMessages();
 
-		this.setState({ loading: true });
+    this.setState({ loading: true });
 
-		if ( this.hasGeolocation() ) {
-			var options = {
-				enableHighAccuracy: true,
-				timeout: 5000,
-				maximumAge: 0
-			};
+    if ( this.hasGeolocation() ) {
+      var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
 
-			navigator.geolocation.getCurrentPosition(
-				this.onSubmit,
-				this.onSubmitError,
-				options
-			);
-		} else {
-			// Send an action to add a message for the client
-			FormActionCreators.feedbackMessage('You need a browser that supports geolocation in order to use this web app.');
-		}
-	},
+      navigator.geolocation.getCurrentPosition(
+        this.onSubmit,
+        this.onSubmitError,
+        options
+      );
+    } else {
+      // Send an action to add a message for the client
+      FormActionCreators.feedbackMessage('You need a browser that supports geolocation in order to use this web app.');
+    }
+  },
 
-	componentDidMount: function() {
-		this.refs.name.getDOMNode().focus();
-	},
-
-	onSubmit: function(position) {
+  onSubmit: function(position) {
 
     var name = this.refs.name.getDOMNode().value;
     var party = this.refs.party.getDOMNode().checked;
-		var textNode = this.refs.status.getDOMNode();
-		var text = textNode.value;
+    var textNode = this.refs.status.getDOMNode();
+    var text = textNode.value;
 
-		textNode.value = '';
-		var coords = { lat: position.coords.latitude, lng: position.coords.longitude };
+    textNode.value = '';
+    var coords = { lat: position.coords.latitude, lng: position.coords.longitude };
 
-		var status = {
+    var status = {
       name: name,
-			status: text,
+      status: text,
       party: party,
-			coords: coords
-		};
+      coords: coords
+    };
 
-		FormActionCreators.addStatus(status);
+    FormActionCreators.addStatus(status);
     FindMeActionCreators.locate(coords);
-		this.setState({ loading: false });
+    this.setState({ loading: false });
     this.refs.status.getDOMNode().focus();
-	},
+  },
 
-	onSubmitError: function(err) {
-		// Something went wrong while getting the geolocation.
-		switch ( err.code ) {
-			case 1: // User denied geolocation
-				// Create a new message for the user to inform
-				// that she needs to accept geolocation in order
-				// to use SocialMaps.
-				FormActionCreators.feedbackMessage('You need to allow us to fetch your position.');
-				break;
+  onSubmitError: function(err) {
+    // Something went wrong while getting the geolocation.
+    switch ( err.code ) {
+      case 1: // User denied geolocation
+        // Create a new message for the user to inform
+        // that she needs to accept geolocation in order
+        // to use SocialMaps.
+        FormActionCreators.feedbackMessage('You need to allow us to fetch your position.');
+        break;
 
-			default:
-				FormActionCreators.feedbackMessage('Something went wrong');
-				break;
-		}
+      default:
+        FormActionCreators.feedbackMessage('Something went wrong');
+        break;
+    }
 
-		this.setState({loading: false});
-	},
+    this.setState({loading: false});
+  },
 
   toggleParty: function() {
     this.setState({
@@ -126,6 +117,20 @@ var AddStatusForm = React.createClass({
 
     return className;
   },
+
+  // React's own methods
+  mixins: [FormHelper],
+
+	getInitialState: function() {
+		return {
+			loading: false,
+      party: false
+		};
+	},
+
+	componentDidMount: function() {
+		this.refs.name.getDOMNode().focus();
+	},
 
   render: function () {
 
