@@ -1,3 +1,7 @@
+// The locator store takes care of the users current position.
+// It initially gets a value (hard coded into getInitialState
+// of StatusMap.js).
+
 'use strict';
 
 var EventEmitter = require('events').EventEmitter;
@@ -31,7 +35,6 @@ LocatorStore.dispatchToken = FluxSocialMapsAppDispatcher.register(function(actio
   switch(action.actionType) {
 
     case 'LOCATE_USER':
-      // Locate
       pos = { lat: action.coords.lat, lng: action.coords.lng };
       break;
 
